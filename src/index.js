@@ -5,21 +5,10 @@ const cors=require('cors')
 app.use(cors());
 const server =http.createServer(app)
 const {Server}=require("socket.io")
-const allowedOrigins = ['https://uptut.netlify.app/', 'http://localhost:3001'];
-app.use(cors({
-  origin: function(origin, callback) {
-    // Check if the origin is allowed
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}));
 
 const io = new Server(server,{
     cors:{
-        origin:'http://localhost:3001',
+        origin:'*',
         methods:["GET","POST"],
     },
 });
